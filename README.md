@@ -1,39 +1,32 @@
-Banking Customer Churn: Machine Learning Pipeline 
+# Banking Customer Churn: Machine Learning Pipeline 
+
 This project implements a complete Data Science workflow to predict customer turnover (churn) in a banking institution. The goal is to provide a predictive tool that allows the bank to identify high-risk customers and apply targeted retention strategies.
 
- Methodology and Project Structure
+##  Methodology and Project Structure
+
 The project was developed following data science best practices, structured as follows:
 
-1. Data Cleaning & Preprocessing
-Feature Selection: Removal of unique identifiers (customer_id) that hold no predictive power.
+### 1. Data Cleaning & Preprocessing
+* **Feature Selection:** Removal of unique identifiers (`customer_id`, `surname`) that hold no predictive power.
+* **Scaling:** Application of `StandardScaler` to normalize numerical variables with different ranges (e.g., `balance` and `estimated_salary`).
+* **Categorical Encoding:** Implementation of `TargetEncoder` and binary mapping to handle features like geography and gender without increasing dimensionality excessively.
 
-Scaling: Application of StandardScaler to normalize numerical variables with different ranges (e.g., balance and estimated_salary).
+### 2. Feature Engineering
+* **Pipeline Integration:** Utilized `ColumnTransformer` to create a robust preprocessing pipeline, ensuring that transformations are consistent across training and testing sets, preventing data leakage.
 
-Categorical Encoding: Implementation of TargetEncoder and binary mapping to handle features like geography and gender without increasing dimensionality excessively.
+### 3. Model Benchmarking
+Seven different algorithms were tested and validated using **K-Fold Cross-Validation** to identify the most robust learner:
+* Logistic Regression (Baseline)
+* SVM (Linear & RBF)
+* K-Nearest Neighbors (KNN)
+* Decision Tree
+* **Random Forest** (Top Performer)
+* XGBoost
 
-2. Feature Engineering
-Utilized ColumnTransformer to create a robust preprocessing pipeline, ensuring that transformations are consistent across training and testing sets, preventing data leakage.
+##  Final Model Performance
 
-3. Model Benchmarking
-Seven different algorithms were tested and validated using K-Fold Cross-Validation:
+The **Random Forest** model was selected after extensive hyperparameter tuning via `GridSearchCV`, showing the best results in terms of stability and predictive power:
 
-Logistic Regression (Baseline)
-
-SVM (Linear & RBF)
-
-K-Nearest Neighbors (KNN)
-
-Decision Tree
-
-Random Forest (Top Performer)
-
-XGBoost
-
- Final Model Performance
-The Random Forest model was chosen after hyperparameter tuning via GridSearchCV, showing the best results in terms of stability and predictive power:
-
-ROC AUC: 0.8636 (Cross-Validation Mean)
-
-Accuracy: ~86%
-
-Focus: High priority on Recall to ensure maximum identification of customers likely to leave.
+* **ROC AUC:** 0.8636 (Cross-Validation Mean)
+* **Accuracy:** ~86%
+* **Strategic Focus:** High priority on **Recall** optimization to ensure maximum identification of customers likely to leave, supporting proactive business intervention.
