@@ -2,7 +2,7 @@
 
 This project implements a complete Data Science workflow to predict customer turnover (churn) in a banking institution. The goal is to provide a predictive tool that allows the bank to identify high-risk customers and apply targeted retention strategies.
 
-## 📁 Data Source
+##  Data Source
 The dataset used in this project was sourced from **Kaggle**: 
 [Bank Customer Churn Prediction Dataset](https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset)
 
