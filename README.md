@@ -1,22 +1,39 @@
-# Banking Customer Churn Prediction 
+Banking Customer Churn: Machine Learning Pipeline 
+This project implements a complete Data Science workflow to predict customer turnover (churn) in a banking institution. The goal is to provide a predictive tool that allows the bank to identify high-risk customers and apply targeted retention strategies.
 
-**Leveraging Random Forest and Hyperparameter Optimization for Strategic Retention.**
+ Methodology and Project Structure
+The project was developed following data science best practices, structured as follows:
 
-This project implements an end-to-end Machine Learning pipeline to predict the probability of customer churn in a banking environment. The primary focus was on statistical robustness and business-driven metric optimization. Developed as part of my Data Science studies at the **Federal University of Ceará (UFC)**.
+1. Data Cleaning & Preprocessing
+Feature Selection: Removal of unique identifiers (customer_id) that hold no predictive power.
 
-##  Key Performance Indicators
-* **ROC AUC:** 0.8636
-* **Accuracy:** 86%
-* **Final Model:** Random Forest Classifier
+Scaling: Application of StandardScaler to normalize numerical variables with different ranges (e.g., balance and estimated_salary).
 
-##  Technical Implementation
+Categorical Encoding: Implementation of TargetEncoder and binary mapping to handle features like geography and gender without increasing dimensionality excessively.
 
-* **Feature Engineering:** Developed financial ratios (e.g., Balance-to-Salary) to uncover deeper behavioral patterns.
-* **Preprocessing Pipeline:** Automated workflow using `Target Encoding` for categorical data and `StandardScaler` for numerical consistency.
-* **Validation Strategy:** Employed `Stratified K-Fold` (5 folds) to handle class imbalance and ensure model generalization.
-* **Model Tuning:** Executed `GridSearchCV` to optimize parameters including `max_depth`, `min_samples_leaf`, and `class_weight`.
+2. Feature Engineering
+Utilized ColumnTransformer to create a robust preprocessing pipeline, ensuring that transformations are consistent across training and testing sets, preventing data leakage.
 
-##  Business Insights
-The final model was fine-tuned to balance Precision and Recall. By optimizing the decision threshold, the institution can identify at-risk customers with high confidence, directly supporting proactive marketing and retention efforts.
+3. Model Benchmarking
+Seven different algorithms were tested and validated using K-Fold Cross-Validation:
 
----
+Logistic Regression (Baseline)
+
+SVM (Linear & RBF)
+
+K-Nearest Neighbors (KNN)
+
+Decision Tree
+
+Random Forest (Top Performer)
+
+XGBoost
+
+ Final Model Performance
+The Random Forest model was chosen after hyperparameter tuning via GridSearchCV, showing the best results in terms of stability and predictive power:
+
+ROC AUC: 0.8636 (Cross-Validation Mean)
+
+Accuracy: ~86%
+
+Focus: High priority on Recall to ensure maximum identification of customers likely to leave.
